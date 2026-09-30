@@ -4,7 +4,7 @@ This repository contains the research paper and accompanying code for the projec
 
 **Evaluating Heterogeneity in Factors Influencing the Transport Mode Choice of Madrid's Citizens**
 
-The project was completed as part of the **BSc Econometrics and Economics** programme at the **Erasmus School of Economics, Erasmus University Rotterdam**.
+The project was completed as part of the **BSc2 Econometrics and Economics** programme at the **Erasmus School of Economics, Erasmus University Rotterdam**.
 
 ## Authors
 
@@ -26,7 +26,7 @@ This project investigates the following research question:
 
 > **What are the most important factors influencing the choice of transport of Madrid citizens, and how do they differ across consumer segments?**
 
-The analysis combines **unsupervised learning**, **supervised machine learning**, and **explainable AI** to identify traveller segments and study the determinants of transport mode choice within those groups.
+The analysis combines **unsupervised learning**, **supervised machine learning**, and **explainable machine learning** to identify traveller segments and study the determinants of transport mode choice within those groups.
 
 The project consists of two main stages:
 
