@@ -50,7 +50,7 @@ The paper compares the suitability of Latent Class Clustering and an enhanced K-
 
 The complete research paper is available here:
 
-**[Read the paper](SeminarResearchPaper_Team5.pdf)**
+**[Read the paper](ResearchPaper.pdf)**
 
 The paper contains the full motivation, literature review, methodology, empirical results, discussion, and references.
 
