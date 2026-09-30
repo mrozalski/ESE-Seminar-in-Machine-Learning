@@ -4,7 +4,7 @@ This repository contains the research paper and accompanying code for the projec
 
 **Evaluating Heterogeneity in Factors Influencing the Transport Mode Choice of Madrid's Citizens**
 
-The project was completed as part of the **BSc Econometrics and Economics** programme at the **Erasmus School of Economics, Erasmus University Rotterdam**. :chatgpt-content-reference{index="0"}
+The project was completed as part of the **BSc Econometrics and Economics** programme at the **Erasmus School of Economics, Erasmus University Rotterdam**.
 
 ## Authors
 
@@ -42,7 +42,7 @@ The project consists of two main stages:
    - LightGBM
    - SHAP-based interpretation
 
-The paper compares the suitability of Latent Class Clustering and an enhanced K-Prototypes algorithm using the Eskin measure for mixed-type data. :chatgpt-content-reference{index="1"}
+The paper compares the suitability of Latent Class Clustering and an enhanced K-Prototypes algorithm using the Eskin measure for mixed-type data.
 
 ---
 
@@ -75,7 +75,7 @@ The dataset contains:
 - temperature;
 - precipitation.
 
-The original CRTM survey contains 222,744 observations. Hourly weather data is aggregated into trip-specific weather measures. :chatgpt-content-reference{index="2"}
+The original CRTM survey contains 222,744 observations. Hourly weather data is aggregated into trip-specific weather measures.
 
 ---
 
@@ -131,7 +131,7 @@ The identified groups are:
 4. **Large Family**
 5. **Unemployed**
 
-These five groups are the final segments used in the subsequent transport-mode analysis. :chatgpt-content-reference{index="3"}
+These five groups are the final segments used in the subsequent transport-mode analysis.
 
 ---
 
@@ -194,7 +194,7 @@ The results indicate that:
 - rush-hour travel affects transport preferences;
 - the effects of individual variables differ across traveller segments.
 
-The paper therefore highlights the importance of accounting for **heterogeneity across travellers** rather than analysing transport-mode choice only at the aggregate level. :chatgpt-content-reference{index="4"}
+The paper therefore highlights the importance of accounting for **heterogeneity across travellers** rather than analysing transport-mode choice only at the aggregate level.
 
 ---
 
