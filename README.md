@@ -1,38 +1,10 @@
-## Repository Structure
-
-```text
-.
-├── README.md
-│
-├── paper/
-│   └── SeminarResearchPaper_Team5.pdf
-│
-├── code/
-│   ├── data_preprocessing.ipynb
-│   ├── LCA_Code.R
-│   ├── kprototype.ipynb
-│   ├── bootstrapping.ipynb
-│   ├── cluster_classification.ipynb
-│   ├── CART_Code.ipynb
-│   ├── FullSHAP.ipynb
-│   ├── Cluster1SHAP.ipynb
-│   ├── Cluster2SHAP.ipynb
-│   ├── Cluster3SHAP.ipynb
-│   ├── Cluster4SHAP.ipynb
-│   └── Cluster5SHAP.ipynb
-│
-└── data/
-    └── README.md
-
----
-
 # Evaluating Heterogeneity in Factors Influencing the Transport Mode Choice of Madrid's Citizens
 
 This repository contains the research paper and accompanying code for the project:
 
 **Evaluating Heterogeneity in Factors Influencing the Transport Mode Choice of Madrid's Citizens**
 
-The project was completed as part of the **BSc Econometrics and Economics** programme at the **Erasmus School of Economics, Erasmus University Rotterdam**.
+The project was completed as part of the **BSc Econometrics and Economics** programme at the **Erasmus School of Economics, Erasmus University Rotterdam**. :chatgpt-content-reference{index="0"}
 
 ## Authors
 
@@ -48,13 +20,13 @@ The project was completed as part of the **BSc Econometrics and Economics** prog
 
 ## Overview
 
-Urban travel behaviour is highly heterogeneous: different groups of citizens may respond differently to factors such as travel distance, vehicle availability, weather conditions, household characteristics, and access to public transport.
+Urban travel behaviour is heterogeneous: different groups of citizens may respond differently to factors such as trip distance, vehicle availability, public transport access, household characteristics, weather conditions, and rush-hour travel.
 
-This project investigates:
+This project investigates the following research question:
 
 > **What are the most important factors influencing the choice of transport of Madrid citizens, and how do they differ across consumer segments?**
 
-The analysis combines **unsupervised learning**, **supervised machine learning**, and **explainable AI** to identify distinct traveller segments and investigate the determinants of transport mode choice within those groups.
+The analysis combines **unsupervised learning**, **supervised machine learning**, and **explainable AI** to identify traveller segments and study the determinants of transport mode choice within those groups.
 
 The project consists of two main stages:
 
@@ -67,7 +39,10 @@ The project consists of two main stages:
    - Classification and Regression Trees (CART)
    - Random Forest
    - XGBoost
-   - SHAP-based model interpretation
+   - LightGBM
+   - SHAP-based interpretation
+
+The paper compares the suitability of Latent Class Clustering and an enhanced K-Prototypes algorithm using the Eskin measure for mixed-type data. :chatgpt-content-reference{index="1"}
 
 ---
 
@@ -75,7 +50,7 @@ The project consists of two main stages:
 
 The complete research paper is available here:
 
-**[Read the paper](paper/SeminarResearchPaper_Team5.pdf)**
+**[Read the paper](SeminarResearchPaper_Team5.pdf)**
 
 The paper contains the full motivation, literature review, methodology, empirical results, discussion, and references.
 
@@ -85,22 +60,22 @@ The paper contains the full motivation, literature review, methodology, empirica
 
 ### 1. Data preprocessing
 
-The original transport survey data is cleaned and transformed before modelling.
+The analysis uses transport survey data from the **Madrid Transport Consortium (CRTM)** and supplements it with meteorological information.
 
-The dataset contains variables related to:
+The dataset contains:
 
+- trip-specific variables;
 - individual socioeconomic characteristics;
 - household characteristics;
-- trip characteristics;
-- transport mode;
+- transport mode information;
 - vehicle availability;
 - public transport card ownership;
 - trip purpose;
-- rush-hour travel;
+- rush-hour indicators;
 - temperature;
 - precipitation.
 
-Weather observations are combined with trip-level information to incorporate environmental conditions into the analysis.
+The original CRTM survey contains 222,744 observations. Hourly weather data is aggregated into trip-specific weather measures. :chatgpt-content-reference{index="2"}
 
 ---
 
@@ -108,30 +83,30 @@ Weather observations are combined with trip-level information to incorporate env
 
 Latent Class Clustering is used to identify groups of travellers with similar socioeconomic and household characteristics.
 
-Several candidate cluster solutions are compared using criteria including:
+Candidate cluster solutions are evaluated using:
 
 - Akaike Information Criterion (AIC);
 - Bayesian Information Criterion (BIC);
-- Consistent AIC (CAIC);
+- Consistent Akaike Information Criterion (CAIC);
 - average silhouette width;
 - normalized entropy.
 
-The final LCC specification identifies **five traveller segments**.
+The final Latent Class solution identifies **five traveller segments**.
 
 ---
 
-### 3. K-Prototypes clustering
+### 3. K-Prototypes Clustering
 
-Because the dataset contains both numerical and categorical variables, K-Prototypes clustering is considered as an alternative segmentation method.
+Because the dataset contains both numerical and categorical variables, K-Prototypes is considered as an alternative segmentation method.
 
-Two versions are evaluated:
+Two variants are evaluated:
 
 - standard K-Prototypes;
-- an extended **Eskin-based K-Prototypes** algorithm.
+- **Eskin-based K-Prototypes**.
 
-The Eskin measure modifies the treatment of categorical dissimilarities and gives different weights to mismatches depending on the cardinality of the categorical variable.
+The Eskin-based extension modifies the dissimilarity measure used for categorical variables.
 
-Cluster quality and stability are evaluated using measures such as:
+Cluster quality and stability are evaluated using:
 
 - clustering cost;
 - average silhouette width;
@@ -140,15 +115,15 @@ Cluster quality and stability are evaluated using measures such as:
 
 ---
 
-### 4. Comparison of clustering approaches
+### 4. Comparison of Clustering Approaches
 
-Latent Class Clustering and Eskin-based K-Prototypes are compared using several complementary approaches.
+Latent Class Clustering and Eskin-based K-Prototypes are compared using multiple approaches.
 
-A **LightGBM classifier** is trained using the resulting cluster labels as target variables. Classification performance and SHAP feature importance are then used to investigate how clearly and meaningfully each clustering solution separates observations.
+A **LightGBM classifier** is trained using the cluster labels as target variables. Classification performance and SHAP feature importance are used to assess how clearly and meaningfully the resulting clusters can be distinguished.
 
-The subsequent analysis uses the five-cluster Latent Class solution.
+The analysis ultimately proceeds with the five-cluster Latent Class solution.
 
-The identified traveller segments are:
+The identified groups are:
 
 1. **Elderly**
 2. **Children**
@@ -156,36 +131,49 @@ The identified traveller segments are:
 4. **Large Family**
 5. **Unemployed**
 
+These five groups are the final segments used in the subsequent transport-mode analysis. :chatgpt-content-reference{index="3"}
+
 ---
 
 ### 5. Classification and Regression Trees
 
-Classification trees are estimated for:
+Classification and Regression Trees are estimated for:
 
-- the complete sample;
+- the full sample;
 - each of the five identified traveller segments.
 
 Hyperparameters are selected using **Optuna**.
 
-The models investigate how variables such as trip distance, vehicle availability, public transport card ownership, demographics, weather and trip characteristics affect the predicted mode of transport.
+The models are used to investigate how variables such as:
+
+- trip distance;
+- car availability;
+- public transport card ownership;
+- demographics;
+- household characteristics;
+- weather;
+- rush-hour travel;
+
+affect the predicted mode of transport.
 
 ---
 
 ### 6. Random Forest, XGBoost and SHAP
 
-To obtain a more detailed interpretation of transport choice, the analysis combines:
+To obtain a more detailed interpretation of transport-mode choice, the analysis combines:
 
 - **Random Forest**
 - **XGBoost**
 
 SHAP values are calculated for both models.
 
-Their contributions are combined using model-performance-based weights to produce a **weighted average SHAP measure**.
+The SHAP values are then combined using model-performance-based weights, producing a weighted average SHAP measure.
 
-This allows feature importance to be examined both:
+This allows feature importance to be examined:
 
-- globally across all transport modes; and
-- separately for individual modes of transport and traveller segments.
+- globally across all transport modes;
+- separately for individual transport modes;
+- separately across the identified traveller segments.
 
 ---
 
@@ -194,16 +182,55 @@ This allows feature importance to be examined both:
 The analysis finds that several variables consistently play an important role in transport mode choice:
 
 - **trip distance**;
-- **availability of a private vehicle**;
+- **availability of a private car**;
 - **possession of a public transport card**.
 
-The SHAP analysis reveals additional heterogeneous effects that are less visible in shallower decision trees.
+The SHAP analysis provides additional insights beyond the shallower decision trees.
 
-For example:
+The results indicate that:
 
-- weather conditions influence transport choices;
+- weather conditions influence transport choice;
 - warmer weather generally increases the likelihood of walking;
 - rush-hour travel affects transport preferences;
-- the effects of individual variables differ across the identified traveller segments.
+- the effects of individual variables differ across traveller segments.
 
-The results therefore demonstrate the importance of accounting for **heterogeneity across travellers** instead of estimating only aggregate transport-choice relationships.
+The paper therefore highlights the importance of accounting for **heterogeneity across travellers** rather than analysing transport-mode choice only at the aggregate level. :chatgpt-content-reference{index="4"}
+
+---
+
+## Repository Structure
+
+```text
+ESE-Seminar-in-Machine-Learning/
+│
+├── README.md
+├── ResearchPaper.pdf
+│
+└── code/
+    │
+    ├── data_preprocessing.ipynb
+    ├── LCA_Code.R
+    ├── kprototype.ipynb
+    ├── bootstrapping.ipynb
+    ├── cluster_classification.ipynb
+    ├── CART_Code.ipynb
+    ├── FullSHAP.ipynb
+    ├── Cluster1SHAP.ipynb
+    ├── Cluster2SHAP.ipynb
+    ├── Cluster3SHAP.ipynb
+    ├── Cluster4SHAP.ipynb
+    ├── Cluster5SHAP.ipynb
+    │
+    └── Datasets/
+        ├── Madrid, Comunidad de Madr... 2018-02-08 to 2018-06-11.csv
+        ├── hourly1.csv
+        ├── hourly2.csv
+        ├── hourly3.csv
+        ├── hourly4.csv
+        ├── full_df.csv
+        ├── full_df_with_cluster.csv
+        ├── cluster_lca_5.csv
+        ├── kprot_clusters.csv
+        ├── eskin_clusters.csv
+        ├── kprototypes_costs.csv
+        └── eskin_costs.csv
