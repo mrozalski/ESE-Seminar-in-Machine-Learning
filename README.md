@@ -1,3 +1,31 @@
+## Repository Structure
+
+```text
+.
+├── README.md
+│
+├── paper/
+│   └── SeminarResearchPaper_Team5.pdf
+│
+├── code/
+│   ├── data_preprocessing.ipynb
+│   ├── LCA_Code.R
+│   ├── kprototype.ipynb
+│   ├── bootstrapping.ipynb
+│   ├── cluster_classification.ipynb
+│   ├── CART_Code.ipynb
+│   ├── FullSHAP.ipynb
+│   ├── Cluster1SHAP.ipynb
+│   ├── Cluster2SHAP.ipynb
+│   ├── Cluster3SHAP.ipynb
+│   ├── Cluster4SHAP.ipynb
+│   └── Cluster5SHAP.ipynb
+│
+└── data/
+    └── README.md
+
+---
+
 # Evaluating Heterogeneity in Factors Influencing the Transport Mode Choice of Madrid's Citizens
 
 This repository contains the research paper and accompanying code for the project:
@@ -179,31 +207,3 @@ For example:
 - the effects of individual variables differ across the identified traveller segments.
 
 The results therefore demonstrate the importance of accounting for **heterogeneity across travellers** instead of estimating only aggregate transport-choice relationships.
-
----
-
-## Repository Structure
-
-```text
-.
-├── README.md
-│
-├── paper/
-│   └── SeminarResearchPaper_Team5.pdf
-│
-├── code/
-│   ├── data_preprocessing.ipynb
-│   ├── LCA_Code.R
-│   ├── kprototype.ipynb
-│   ├── bootstrapping.ipynb
-│   ├── cluster_classification.ipynb
-│   ├── CART_Code.ipynb
-│   ├── FullSHAP.ipynb
-│   ├── Cluster1SHAP.ipynb
-│   ├── Cluster2SHAP.ipynb
-│   ├── Cluster3SHAP.ipynb
-│   ├── Cluster4SHAP.ipynb
-│   └── Cluster5SHAP.ipynb
-│
-└── data/
-    └── README.md
